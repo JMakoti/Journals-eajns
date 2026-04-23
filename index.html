@@ -7,6 +7,10 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>EAJNS | East African Journal of Neurological Sciences</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <style>
       * {
         margin: 0;
@@ -209,7 +213,6 @@
         position: relative;
         margin-top: 3.5rem;
         padding: 30px 0;
-        /* padding-top: 150px; */
       }
       .article-card .article-img {
         width: 210px;
@@ -283,7 +286,6 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        /* gap: 1rem; */
         border-top: 1px dashed #b47bad;
         padding-top: 1rem;
       }
@@ -332,17 +334,14 @@
         .article-card {
           padding: 25px 0;
         }
-
         .article-card .article-img {
           width: 180px;
           height: 260px;
           left: 10px;
         }
-
         .article-content {
           margin-left: 210px;
         }
-
         .pages-pdf-row {
           display: flex;
           flex-direction: row;
@@ -350,9 +349,9 @@
       }
 
       @media (max-width: 768px) {
-        .article-layout{
-            display: flex;
-            flex-direction: column;
+        .article-layout {
+          display: flex;
+          flex-direction: column;
         }
         .article-card {
           flex-direction: column;
@@ -360,7 +359,6 @@
           padding: 1.5rem;
           margin-top: 2rem;
         }
-
         .article-card .article-img {
           position: relative;
           top: 0;
@@ -369,17 +367,14 @@
           height: 220px;
           border-radius: 8px;
         }
-
         .article-content {
           margin-left: 0;
           margin-top: 1rem;
         }
-
         .pages-pdf-row {
           flex-direction: column;
           align-items: flex-start;
         }
-
         .pdf-link {
           margin-right: 0;
         }
@@ -389,28 +384,22 @@
         .article-title {
           font-size: 1.1rem;
         }
-
         .filters-panel {
-        position: static;
-      }
-
-
+          position: static;
+        }
         .article-authors {
           font-size: 0.85rem;
         }
-
         .badge {
           font-size: 0.6rem;
           padding: 0.2rem 0.6rem;
         }
-
         .article-card {
           padding: 1.2rem;
         }
-
-        .pages-pdf-row{
-            display: flex;
-            flex-direction: row;
+        .pages-pdf-row {
+          display: flex;
+          flex-direction: row;
         }
       }
 
@@ -423,19 +412,106 @@
         margin-bottom: 2rem;
       }
 
-      .scope-grid {
+      .aim {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        margin-top: 1rem;
+        flex-direction: row;
+        gap: 3rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      .aim-title {
+        width: 20%;
+      }
+      .aim .aim-content {
+        width: 70%;
+        font-size: 1.2rem;
+        border-left: 1px solid;
+        padding-left: 2rem;
       }
 
-      .scope-tag {
-        background: #eef3f8;
-        padding: 0.4rem 1rem;
-        border-radius: 40px;
+      .article-section {
+        padding: 2rem 0;
+      }
+      .article-section h1 {
+        font-size: 1.6rem;
+        text-align: center;
+        padding-bottom: 2rem;
+      }
+      .article-types {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      .type-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.9rem 1rem;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: 0.2s ease;
+      }
+      .type-item:hover {
+        transform: translateY(-3px);
+      }
+      .type-item i {
+        font-size: 2.4rem;
+        color: #a869cc;
+        min-width: 20px;
+      }
+      .type-item span {
+        font-size: 1rem;
+      }
+
+      .neuro-section {
+        padding: 2rem 0;
+      }
+      .neuro-section h1 {
+        font-size: 1.6rem;
+        text-align: center;
+        padding-bottom: 2rem;
+      }
+      .neuro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+      }
+      .neuro-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: #fff;
+        padding: 0.8rem;
+        transition: 0.2s ease;
+      }
+      .neuro-item:hover {
+        transform: translateY(-4px);
+      }
+      .neuro-item img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .neuro-content h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+      }
+      .neuro-content p {
         font-size: 0.8rem;
-        color: #1a5e7a;
+        color: #555;
+      }
+      @media (max-width: 900px) {
+        .neuro-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .neuro-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       /* ARCHIVE view */
@@ -451,14 +527,12 @@
         position: relative;
         border-radius: 32px 32px 0 0;
       }
-
       .hero-left {
         width: 100%;
         max-width: 500px;
         padding: 0 15px;
         box-sizing: border-box;
       }
-
       .hero-images {
         flex: 1;
         display: flex;
@@ -467,7 +541,6 @@
         height: 260px;
         position: relative;
       }
-
       .img-card {
         width: 112px;
         height: 168px;
@@ -478,15 +551,12 @@
         transition: transform 0.3s ease;
         background: white;
       }
-
       .img-card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
       }
-
-      /* Fan positioning for 5 cards */
       .img-card--1 {
         transform: rotate(-12deg) translateX(-170px) translateY(6px);
         z-index: 1;
@@ -507,8 +577,6 @@
         transform: rotate(12deg) translateX(170px) translateY(6px);
         z-index: 5;
       }
-
-      /* Hover effects: fan out slightly */
       .hero:hover .img-card--1 {
         transform: rotate(-14deg) translateX(-180px) translateY(2px);
       }
@@ -524,13 +592,11 @@
       .hero:hover .img-card--5 {
         transform: rotate(14deg) translateX(180px) translateY(2px);
       }
-
       .page-divider {
         height: 1px;
         background: #a869cc;
         margin: 0 4rem;
       }
-
       .breadcrumb {
         padding: 1.1rem 4rem 0;
         display: flex;
@@ -539,7 +605,6 @@
         font-size: 13px;
         background: #a869cc;
       }
-
       .breadcrumb__link {
         color: #fff;
         text-decoration: none;
@@ -548,19 +613,13 @@
       .breadcrumb__link:hover {
         color: #e85d24;
       }
-
-      .breadcrumb__sep {
-        color: #fff;
-      }
-
+      .breadcrumb__sep,
       .breadcrumb__current {
         color: #fff;
       }
-
       .archive {
         padding: 2rem 4rem 5rem;
       }
-
       .archive__header {
         display: flex;
         align-items: center;
@@ -569,7 +628,6 @@
         flex-wrap: wrap;
         gap: 1rem;
       }
-
       .archive__title {
         font-size: 11px;
         font-weight: 500;
@@ -577,13 +635,11 @@
         text-transform: uppercase;
         color: #8ba3b0;
       }
-
       .filter-wrap {
         display: flex;
         align-items: center;
         gap: 10px;
       }
-
       .filter-label {
         font-size: 12px;
         font-weight: 400;
@@ -591,7 +647,6 @@
         letter-spacing: 0.04em;
         white-space: nowrap;
       }
-
       .vol-filter {
         appearance: none;
         background-color: #ffffff;
@@ -612,13 +667,11 @@
         outline: none;
         border-color: #e85d24;
       }
-
       .pdf-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
         gap: 22px;
       }
-
       .pdf-card {
         background: white;
         border-radius: 5px;
@@ -630,12 +683,10 @@
           box-shadow 0.25s ease;
         animation: fadeUp 0.4s ease both;
       }
-
       .pdf-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 14px 26px rgba(0, 0, 0, 0.08);
       }
-
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -646,12 +697,8 @@
           transform: translateY(0);
         }
       }
-
       .pdf-thumb {
         height: 320px;
-        /* display: flex;
-        align-items: center;
-        justify-content: center; */
         position: relative;
         overflow: hidden;
       }
@@ -661,28 +708,20 @@
         object-fit: cover;
         display: block;
       }
-
+      .pdf-info {
+        padding: 0.9rem 0.8rem 1rem;
+      }
       .pdf-name {
         font-size: 13px;
-        font-weight: 400;
+        font-weight: 500;
         color: #1a2c3e;
         line-height: 1.35;
         margin-bottom: 4px;
       }
-
       .pdf-meta {
         font-size: 11px;
         color: #8ba3b0;
       }
-
-      .pdf-proceedings-note {
-        font-size: 10px;
-        color: #4a6a7a;
-        line-height: 1.4;
-        margin-top: 5px;
-        font-style: italic;
-      }
-
       @media (max-width: 900px) {
         .hero {
           padding: 2rem 2rem 3rem;
@@ -722,7 +761,6 @@
           transform: rotate(14deg) translateX(128px);
         }
       }
-
       @media (max-width: 640px) {
         .hero {
           flex-direction: column;
@@ -730,7 +768,6 @@
           padding-bottom: 3rem;
           padding-top: 3rem;
         }
-
         .hero-images {
           width: 100%;
           height: 200px;
@@ -763,68 +800,165 @@
   </head>
   <body>
     <nav id="mainNav">
-      <a data-view="home" class="nav-link"> Home</a>
-      <a data-view="articles" class="nav-link active"> Articles</a>
+      <a data-view="home" class="nav-link active">Home</a>
+      <a data-view="articles" class="nav-link">Articles</a>
       <a data-view="archives" class="nav-link">Archives</a>
     </nav>
 
     <main>
-      <!-- HOME VIEW -->
-      <section id="homeView" class="view-section">
-        <div class="hero-card">
-          <h1 style="color: #0b4b66; font-size: 2rem; margin-bottom: 0.5rem">
-            East African Journal of Neurological Sciences
+      <!-- HOME VIEW (active by default) -->
+      <section id="homeView" class="view-section active">
+        <div class="aim">
+          <div class="aim-title"><h1>Aims and Scope</h1></div>
+          <div class="aim-content">
+            <p>
+              <b>Aims :</b> The East African Journal of Neurological Sciences
+              (EAJNS) is dedicated to advancing the field of neurological
+              sciences through the dissemination of high-quality research and
+              innovative findings. As the official journal of the East African
+              Association of Neurological Surgeons (EAANS), EAJNS aims to
+              provide a platform for researchers, clinicians, and practitioners
+              to share knowledge and contribute to the development of
+              neurosurgery and related disciplines in Africa and beyond.
+            </p>
+            <br />
+            <p>
+              <b>Mission Statement:</b> The East African Journal of Neurological
+              Sciences (EAJNS) is dedicated to advancing the field of
+              neurological sciences by publishing rigorous, peer-reviewed
+              research. Our mission is to foster regional and global
+              collaboration, drive innovation in the understanding and
+              management of neurological disorders, and provide medical
+              professionals and researchers with a trusted platform for the
+              dissemination of critical knowledge and scientific advancements.
+            </p>
+          </div>
+        </div>
+        <div class="article-section">
+          <h1>Types of Articles Published</h1>
+          <div class="article-types">
+            <div class="type-item">
+              <i class="fa-solid fa-flask"></i
+              ><span>Original Research Articles</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-file-medical"></i><span>Case Reports</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-layer-group"></i><span>Case Series</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-magnifying-glass"></i><span>Reviews</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-paper-plane"></i
+              ><span>Short Communications</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-gears"></i><span>Technical Notes</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-newspaper"></i><span>Editorials</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-envelope"></i
+              ><span>Letters to the Editor</span>
+            </div>
+            <div class="type-item">
+              <i class="fa-solid fa-comments"></i><span>Commentaries</span>
+            </div>
+          </div>
+        </div>
+        <section class="neuro-section">
+          <h1>
+            The East African Journal of Neurological Sciences publishes
+            manuscripts in the following fields
           </h1>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem">
-            Advancing neuroscience across Africa and beyond — bridging clinical
-            practice, research, and education.
-          </p>
-          <hr style="margin: 1.5rem 0; border-color: #e0edf3" />
-          <h3>Aims & Scope</h3>
-          <p>The journal publishes high-quality manuscripts covering:</p>
-          <div class="scope-grid" id="homeScopeList"></div>
-          <p style="margin-top: 1.5rem">
-            <strong>ISSN:</strong> 2708-1822 (Online) |
-            <strong>Open Access</strong> | <strong>Peer-Reviewed</strong>
-          </p>
-          <p>
-            Indexed in African Journals Online (AJOL), DOAJ, and Scopus emerging
-            sources.
-          </p>
-        </div>
-        <div style="background: white; border-radius: 28px; padding: 1.5rem">
-          <h3> Featured Article</h3>
-          <p>
-            <strong
-              >Treatment Response Utilizing CSF IL 1 Beta Level In Bacterial
-              Meningitis Patients</strong
-            ><br />
-            Nasser Abdallah et al. – Pages 67-71<br />
-            A groundbreaking study on CSF biomarkers in bacterial meningitis
-            management.
-          </p>
-          <a
-            href="#"
-            class="pdf-link"
-            style="display: inline-block; margin-top: 0.8rem"
-            >Read more →</a
-          >
-        </div>
+          <div class="neuro-grid">
+            <div class="neuro-item">
+              <img
+                src="https://images.pexels.com/photos/31000573/pexels-photo-31000573.jpeg"
+                alt="Neurosurgery"
+              />
+              <div class="neuro-content">
+                <h4>Clinical & Experimental Neurosurgery</h4>
+              </div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://images.pexels.com/photos/28585011/pexels-photo-28585011.jpeg"
+                alt="Neurophysiology"
+              />
+              <div class="neuro-content"><h4>Clinical Neurophysiology</h4></div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://images.pexels.com/photos/7089020/pexels-photo-7089020.jpeg"
+                alt="Neuroanatomy"
+              />
+              <div class="neuro-content"><h4>Neuroanatomy</h4></div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://www.parkinson.org/sites/default/files/styles/1902x600/public/images/gettingdiagnosed.jpg?h=83615a45&itok=wkmPjJFp"
+                alt="Neurology"
+              />
+              <div class="neuro-content"><h4>Neurology</h4></div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWJNnkQRRuk-AcFJ7sRnDKxCJp9p7fQ-PM8A&s"
+                alt="Neuro-ophthalmology"
+              />
+              <div class="neuro-content"><h4>Neuro-ophthalmology</h4></div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://radiologybusiness.com/sites/default/files/styles/teaser/public/2023-05/brain_mri_sectra_pacs_himss23_df.jpeg.webp?h=71976bb4&itok=b4w4oMbk"
+                alt="Neuroradiology"
+              />
+              <div class="neuro-content"><h4>Neuroradiology</h4></div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYhy2Zih5gmalu7IoOCyf2Tldtn8pCqMvkbw&s"
+                alt="Neuropathology"
+              />
+              <div class="neuro-content"><h4>Neuropathology</h4></div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYS9ykElREl59rGeLR9mXoNGRbC3FRZ9Kq1w&s"
+                alt="Global neurology"
+              />
+              <div class="neuro-content"><h4>Global neurology</h4></div>
+            </div>
+            <div class="neuro-item">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi3L5ane2wXmZJg7ydRWUBltHrkGh8l6uCxA&s"
+                alt="Innovations"
+              />
+              <div class="neuro-content">
+                <h4>Innovations in neuroscience</h4>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
 
       <!-- ARTICLES VIEW -->
-      <section id="articlesView" class="view-section active">
+      <section id="articlesView" class="view-section">
         <div class="article-layout">
           <div class="filters-panel">
             <div class="filter-group">
-              <label> ARTICLE TYPE</label>
-              <select id="typeFilter" aria-label="Filter by article type">
+              <label> ARTICLE TYPE</label
+              ><select id="typeFilter">
                 <option value="">— All types —</option>
               </select>
             </div>
             <div class="filter-group">
-              <label> SCOPE / FIELD</label>
-              <select id="scopeFilter" aria-label="Filter by scientific scope">
+              <label> SCOPE / FIELD</label
+              ><select id="scopeFilter">
                 <option value="">— All scopes —</option>
               </select>
             </div>
@@ -832,7 +966,6 @@
               ⟳ Reset all filters
             </button>
           </div>
-
           <div class="right-articles">
             <div class="articles-header">
               <h2>Published Articles</h2>
@@ -845,7 +978,7 @@
         </div>
       </section>
 
-      <!-- ARCHIVES VIEW with image fan -->
+      <!-- ARCHIVES VIEW -->
       <section id="archivesView" class="view-section">
         <section class="hero">
           <div class="hero-left">
@@ -859,51 +992,47 @@
             <div class="img-card img-card--1">
               <img
                 src="https://theeajns.org/public/journals/1/cover_issue_16_en.png"
-                alt="Journal cover Vol 16"
+                alt="Vol 16"
               />
             </div>
             <div class="img-card img-card--2">
               <img
                 src="https://theeajns.org/public/journals/1/cover_issue_14_en.png"
-                alt="Journal cover Vol 14"
+                alt="Vol 14"
               />
             </div>
             <div class="img-card img-card--3">
               <img
                 src="https://theeajns.org/public/journals/1/cover_issue_8_en_US.jpg"
-                alt="Journal cover Vol 8"
+                alt="Vol 8"
               />
             </div>
             <div class="img-card img-card--4">
               <img
                 src="https://theeajns.org/public/journals/1/cover_issue_6_en_US.jpg"
-                alt="Journal cover Vol 6"
+                alt="Vol 6"
               />
             </div>
             <div class="img-card img-card--5">
               <img
                 src="https://theeajns.org/public/journals/1/cover_issue_1_en_US.jpg"
-                alt="Journal cover Vol 1"
+                alt="Vol 1"
               />
             </div>
           </div>
         </section>
         <div class="page-divider"></div>
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="#" class="breadcrumb__link">Home</a>
-          <span class="breadcrumb__sep">/</span>
-          <span class="breadcrumb__current">Archives</span>
+        <nav class="breadcrumb">
+          <a href="#" class="breadcrumb__link">Home</a
+          ><span class="breadcrumb__sep">/</span
+          ><span class="breadcrumb__current">Archives</span>
         </nav>
-        <section class="archive" id="archive">
+        <section class="archive">
           <div class="archive__header">
             <h2 class="archive__title">Archives</h2>
             <div class="filter-wrap">
-              <span class="filter-label">Filter by volume</span>
-              <select
-                class="vol-filter"
-                id="volFilter"
-                aria-label="Filter by volume"
-              >
+              <span class="filter-label">Filter by volume</span
+              ><select class="vol-filter" id="volFilter">
                 <option value="all">All volumes</option>
                 <option value="5">Vol. 5</option>
                 <option value="4">Vol. 4</option>
@@ -931,7 +1060,6 @@
         "Letters to the editor",
         "Commentaries",
       ];
-
       const SCOPE_FIELDS_LIST = [
         "Clinical and experimental neurosurgery",
         "Clinical neurophysiology",
@@ -1010,7 +1138,7 @@
         );
       }
 
-      // -------- ARTICLES VIEW ----------
+      // ---------- ARTICLES VIEW ----------
       const typeSelect = document.getElementById("typeFilter");
       const scopeSelect = document.getElementById("scopeFilter");
       const articlesContainer = document.getElementById("articlesContainer");
@@ -1038,47 +1166,35 @@
       function getFilteredArticles() {
         const selectedType = typeSelect ? typeSelect.value : "";
         const selectedScope = scopeSelect ? scopeSelect.value : "";
-        return articlesData.filter((article) => {
-          const typeMatch = !selectedType || article.type === selectedType;
-          const scopeMatch = !selectedScope || article.scope === selectedScope;
-          return typeMatch && scopeMatch;
-        });
+        return articlesData.filter(
+          (article) =>
+            (!selectedType || article.type === selectedType) &&
+            (!selectedScope || article.scope === selectedScope),
+        );
       }
 
       function renderArticles() {
         if (!articlesContainer) return;
         const filtered = getFilteredArticles();
-        const count = filtered.length;
-        if (resultCountSpan)
-          resultCountSpan.textContent = `${count} article${count !== 1 ? "s" : ""}`;
+        resultCountSpan.textContent = `${filtered.length} article${filtered.length !== 1 ? "s" : ""}`;
         if (filtered.length === 0) {
           articlesContainer.innerHTML = `<div class="empty-state">No articles match the selected filters.<br>Try changing article type or scope.</div>`;
           return;
         }
-        const cards = filtered
+        articlesContainer.innerHTML = filtered
           .map(
             (article) => `
           <div class="article-card">
-            <div class="article-img">
-            <img src=${article.img_url} alt=${escapeHtml(article.title)}/>
-            </div>
+            <div class="article-img"><img src="${article.img_url}" alt="${escapeHtml(article.title)}"/></div>
             <div class="article-content">
-            <div class="article-title">${escapeHtml(article.title)}</div>
-            <div class="article-authors">${escapeHtml(article.authors)}</div>
-            <div class="meta-badges">
-              <span class="badge"> ${escapeHtml(article.type)}</span>
-              <span class="badge badge-scope">${escapeHtml(article.scope)}</span>
+              <div class="article-title">${escapeHtml(article.title)}</div>
+              <div class="article-authors">${escapeHtml(article.authors)}</div>
+              <div class="meta-badges"><span class="badge">${escapeHtml(article.type)}</span><span class="badge badge-scope">${escapeHtml(article.scope)}</span></div>
+              <div class="pages-pdf-row"><div class="pagination-info">Pages: ${escapeHtml(article.pages)}</div><a href="#" class="pdf-link" target="_blank"> Download PDF</a></div>
             </div>
-            <div class="pages-pdf-row">
-              <div class="pagination-info"> Pages: ${escapeHtml(article.pages)}</div>
-              <a href="#" class="pdf-link" target="_blank"> Download PDF</a>
-            </div>
-            </div>
-          </div>
-        `,
+          </div>`,
           )
           .join("");
-        articlesContainer.innerHTML = cards;
       }
 
       function resetFilters() {
@@ -1087,158 +1203,100 @@
         renderArticles();
       }
 
-      // -------- ARCHIVE VIEW (with PDF grid) ----------
+      // ---------- ARCHIVES -----------------
       const ARCHIVE_VOLUMES = [
         {
           id: "v5n2",
           vol: 5,
-          label: "Vol. 5 No. 2",
-          year: 2026,
           name: "Vol. 5 No. 2 (2026)",
-          color: "#e85d24",
+          year: 2026,
           bgColor: "#fdf1ec",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_16_en.png",
         },
         {
           id: "v5n1",
           vol: 5,
-          label: "Vol. 5 No. 1",
-          year: 2026,
           name: "Vol. 5 No. 1 (2026)",
-          color: "#e85d24",
+          year: 2026,
           bgColor: "#fdf1ec",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_15_en.jpg",
         },
         {
           id: "v4supp1",
           vol: 4,
-          label: "Vol. 4 Supp 1",
-          year: 2025,
           name: "Vol. 4 Supp 1 (2025) - EAANS Proceedings",
-          color: "#1e6fa8",
+          year: 2025,
           bgColor: "#eaf3fb",
-          isProceedings: true,
-          proceedingsNote:
-            "Proceedings of the 13th Annual EAANS, Mombasa, Kenya, 28–30 Nov 2025.",
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_14_en.png",
         },
         {
           id: "v4n3",
           vol: 4,
-          label: "Vol. 4 No. 3",
-          year: 2025,
           name: "Vol. 4 No. 3 (2025)",
-          color: "#1e6fa8",
+          year: 2025,
           bgColor: "#eaf3fb",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_12_en.png",
         },
         {
           id: "v4n2",
           vol: 4,
-          label: "Vol. 4 No. 2",
-          year: 2025,
           name: "Vol. 4 No. 2 (2025)",
-          color: "#1e6fa8",
+          year: 2025,
           bgColor: "#eaf3fb",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_11_en_US.png",
         },
         {
           id: "v4n1",
           vol: 4,
-          label: "Vol. 4 No. 1",
-          year: 2025,
           name: "Vol. 4 No. 1 (2025)",
-          color: "#1e6fa8",
+          year: 2025,
           bgColor: "#eaf3fb",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_10_en_US.png",
         },
         {
           id: "v3supp1",
           vol: 3,
-          label: "Vol. 3 Supp 1",
-          year: 2024,
           name: "Vol. 3 Supp 1 (2024) - EAANS Proceedings",
-          color: "#2e7d5a",
+          year: 2024,
           bgColor: "#e8f5ee",
-          isProceedings: true,
-          proceedingsNote:
-            "Proceedings of the 12th Annual EAANS, Diani, Kenya, 28–30 Nov 2024.",
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_9_en_US.png",
         },
         {
           id: "v3n2",
           vol: 3,
-          label: "Vol. 3 No. 2",
-          year: 2024,
           name: "Vol. 3 No. 2 (2024)",
-          color: "#2e7d5a",
+          year: 2024,
           bgColor: "#e8f5ee",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_8_en_US.jpg",
         },
         {
           id: "v3n1",
           vol: 3,
-          label: "Vol. 3 No. 1",
-          year: 2024,
           name: "Vol. 3 No. 1 (2024)",
-          color: "#2e7d5a",
+          year: 2024,
           bgColor: "#e8f5ee",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_7_en_US.png",
         },
         {
           id: "v2n2",
           vol: 2,
-          label: "Vol. 2 No. 2",
-          year: 2023,
           name: "Vol. 2 No. 2 (2023)",
-          color: "#7a3a9a",
+          year: 2023,
           bgColor: "#f4eef9",
-          isProceedings: false,
-          proceedingsNote: null,
           img_url:
             "https://theeajns.org/public/journals/1/cover_issue_6_en_US.jpg",
         },
       ];
 
-      function buildArchiveCard(item, index) {
-        const delay = index * 50 + "ms";
-        return `
-          <article class="pdf-card" data-vol="${item.vol}" style="animation-delay:${delay};" tabindex="0">
-            <div class="pdf-thumb" style="background:${item.bgColor};">
-                <img src=${item.img_url} alt=${escapeHtml(item.name)}/>
-            </div>
-            <div class="pdf-info">
-              <p class="pdf-name">${escapeHtml(item.name)}</p>
-              <p class="pdf-meta">${item.year}</p>
-            </div>
-          </article>
-        `;
-      }
-
-      let archiveFilterAttached = false;
       function renderArchiveGrid(filterVol = "all") {
         const grid = document.getElementById("pdfGrid");
         if (!grid) return;
@@ -1252,32 +1310,24 @@
           return;
         }
         grid.innerHTML = filtered
-          .map((item, idx) => buildArchiveCard(item, idx))
+          .map(
+            (item, idx) =>
+              `<article class="pdf-card" data-vol="${item.vol}" style="animation-delay:${idx * 50}ms;"><div class="pdf-thumb" style="background:${item.bgColor};"><img src="${item.img_url}" alt="${escapeHtml(item.name)}"/></div><div class="pdf-info"><p class="pdf-name">${escapeHtml(item.name)}</p><p class="pdf-meta">${item.year}</p></div></article>`,
+          )
           .join("");
       }
 
       function initArchives() {
         const volSelect = document.getElementById("volFilter");
-        if (!volSelect) return;
-        renderArchiveGrid(volSelect.value);
-        if (!archiveFilterAttached) {
-          volSelect.addEventListener("change", (e) => {
-            renderArchiveGrid(e.target.value);
-          });
-          archiveFilterAttached = true;
+        if (volSelect) {
+          renderArchiveGrid(volSelect.value);
+          volSelect.addEventListener("change", (e) =>
+            renderArchiveGrid(e.target.value),
+          );
         }
       }
 
-      // -------- HOME SCOPE ----------
-      function populateHomeScope() {
-        const container = document.getElementById("homeScopeList");
-        if (!container) return;
-        container.innerHTML = SCOPE_FIELDS_LIST.map(
-          (scope) => `<span class="scope-tag">${escapeHtml(scope)}</span>`,
-        ).join("");
-      }
-
-      // -------- NAVIGATION ----------
+      // ---------- VIEW ACTIVATION & DEFAULT HOME ----------
       function activateView(viewId) {
         document
           .querySelectorAll(".view-section")
@@ -1289,9 +1339,8 @@
           if (
             link.getAttribute("data-view") ===
             viewId.replace("View", "").toLowerCase()
-          ) {
+          )
             link.classList.add("active");
-          }
         });
         if (viewId === "articlesView") renderArticles();
         if (viewId === "archivesView") {
@@ -1311,20 +1360,28 @@
             else if (viewName === "archives") activateView("archivesView");
           });
         });
-        const currentActive = document.querySelector(".nav-link.active");
-        if (
-          !currentActive ||
-          currentActive.getAttribute("data-view") !== "articles"
-        ) {
-          activateView("articlesView");
+        // Ensure home view is active by default (since HTML active class is on homeView, but sync nav and state)
+        const currentActiveSection = document.querySelector(
+          ".view-section.active",
+        );
+        if (!currentActiveSection || currentActiveSection.id !== "homeView") {
+          activateView("homeView");
+        } else {
+          // sync nav active to home
+          document
+            .querySelectorAll(".nav-link")
+            .forEach((link) => link.classList.remove("active"));
+          const homeLink = document.querySelector(
+            '.nav-link[data-view="home"]',
+          );
+          if (homeLink) homeLink.classList.add("active");
         }
       }
 
-      // -------- INIT ----------
+      // ---------- INIT ----------
       function init() {
         populateSelectors();
         renderArticles();
-        populateHomeScope();
         initArchives();
         setupNavigation();
         if (typeSelect && scopeSelect) {
@@ -1333,12 +1390,9 @@
         }
         if (resetBtn) resetBtn.addEventListener("click", resetFilters);
       }
-
-      if (document.readyState === "loading") {
+      if (document.readyState === "loading")
         document.addEventListener("DOMContentLoaded", init);
-      } else {
-        init();
-      }
+      else init();
     </script>
   </body>
 </html>
