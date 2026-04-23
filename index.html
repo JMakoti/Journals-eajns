@@ -1,0 +1,1344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>EAJNS | East African Journal of Neurological Sciences</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          system-ui, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        line-height: 1.5;
+      }
+
+      /* Navigation */
+      nav {
+        background: #0b2b3b;
+        padding: 1rem 2rem;
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      nav a {
+        color: #eef4ff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition:
+          color 0.2s,
+          border-bottom 0.2s;
+        letter-spacing: 0.3px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+      }
+
+      nav a:hover {
+        color: #9bc9e5;
+        border-bottom-color: #9bc9e5;
+      }
+
+      nav a.active {
+        color: white;
+        border-bottom-color: #ffb347;
+        font-weight: 600;
+      }
+
+      /* Main container */
+      main {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Views (routing) */
+      .view-section {
+        display: none;
+        animation: fadeIn 0.25s ease;
+      }
+
+      .view-section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ARTICLE VIEW LAYOUT */
+      .article-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 2rem;
+        background: transparent;
+      }
+
+      /* LEFT FILTERS PANEL */
+      .filters-panel {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem 1.2rem;
+        height: fit-content;
+        position: sticky;
+        top: 1.5rem;
+        border: 1px solid #e2edf2;
+      }
+
+      .filter-group {
+        margin-bottom: 2rem;
+      }
+
+      .filter-group label {
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.6rem;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #1f5e7a;
+      }
+
+      select {
+        width: 100%;
+        padding: 0.7rem 0.9rem;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        border: 1px solid #cbdde6;
+        background-color: #ffffff;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #0f2f3f;
+      }
+
+      select:focus {
+        outline: none;
+        border-color: #2c7da0;
+        box-shadow: 0 0 0 3px rgba(44, 125, 160, 0.2);
+      }
+
+      .reset-btn {
+        background: #eef2f5;
+        border: none;
+        width: 100%;
+        padding: 0.6rem;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #1f5e7a;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-top: 0.8rem;
+        font-family: inherit;
+      }
+
+      .reset-btn:hover {
+        background: #dce6ec;
+        color: #0a3b4b;
+      }
+
+      /* RIGHT SECTION: articles gallery */
+      .right-articles {
+        background: transparent;
+      }
+
+      .articles-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #cfe3ec;
+      }
+
+      .articles-header h2 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #0e4b64;
+        letter-spacing: -0.2px;
+      }
+
+      .result-count {
+        background: #b47bad;
+        color: #fff;
+        padding: 0.25rem 0.9rem;
+        border-radius: 40px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .articles-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      /* Article card */
+      .article-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.1s ease,
+          box-shadow 0.2s;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        position: relative;
+        margin-top: 3.5rem;
+        padding: 30px 0;
+        /* padding-top: 150px; */
+      }
+      .article-card .article-img {
+        width: 210px;
+        height: 300px;
+        top: -30px;
+        position: absolute;
+        left: 10px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .article-card .article-img img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .article-content {
+        margin-left: 240px;
+        width: 100%;
+      }
+
+      .article-card:hover {
+        box-shadow: 0 14px 26px rgba(0, 0, 0, 0.08);
+      }
+
+      .article-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+      }
+
+      .article-authors {
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+        font-weight: 500;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+
+      .meta-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin: 0.8rem 0 1rem 0;
+      }
+
+      .badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.25rem 0.8rem;
+        border-radius: 40px;
+        background: #b47bad;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        letter-spacing: 0.3px;
+      }
+
+      .badge-scope {
+        background: #b47bad;
+        color: #fff;
+      }
+
+      .pages-pdf-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        /* gap: 1rem; */
+        border-top: 1px dashed #b47bad;
+        padding-top: 1rem;
+      }
+
+      .pagination-info {
+        font-weight: 600;
+        background: #b47bad;
+        padding: 0.3rem 1rem;
+        border-radius: 40px;
+        font-size: 0.85rem;
+        color: #fff;
+      }
+
+      .pdf-link {
+        background: #b47bad;
+        padding: 0.45rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #fff;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-right: 20px;
+      }
+
+      .pdf-link:hover {
+        background: #2c7da0;
+        color: white;
+        box-shadow: 0 2px 8px rgba(44, 125, 160, 0.3);
+      }
+
+      .empty-state {
+        background: white;
+        border-radius: 28px;
+        padding: 3rem 2rem;
+        text-align: center;
+        color: #5f8ea8;
+        font-size: 1.1rem;
+        border: 1px dashed #bdd8e6;
+      }
+
+      @media (max-width: 1024px) {
+        .article-card {
+          padding: 25px 0;
+        }
+
+        .article-card .article-img {
+          width: 180px;
+          height: 260px;
+          left: 10px;
+        }
+
+        .article-content {
+          margin-left: 210px;
+        }
+
+        .pages-pdf-row {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .article-layout{
+            display: flex;
+            flex-direction: column;
+        }
+        .article-card {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1.5rem;
+          margin-top: 2rem;
+        }
+
+        .article-card .article-img {
+          position: relative;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 220px;
+          border-radius: 8px;
+        }
+
+        .article-content {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+
+        .pages-pdf-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .pdf-link {
+          margin-right: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .article-title {
+          font-size: 1.1rem;
+        }
+
+        .filters-panel {
+        position: static;
+      }
+
+
+        .article-authors {
+          font-size: 0.85rem;
+        }
+
+        .badge {
+          font-size: 0.6rem;
+          padding: 0.2rem 0.6rem;
+        }
+
+        .article-card {
+          padding: 1.2rem;
+        }
+
+        .pages-pdf-row{
+            display: flex;
+            flex-direction: row;
+        }
+      }
+
+      /* HOME view custom styles */
+      .hero-card {
+        background: white;
+        border-radius: 32px;
+        padding: 2rem 2rem 2rem 2rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+      }
+
+      .scope-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      .scope-tag {
+        background: #eef3f8;
+        padding: 0.4rem 1rem;
+        border-radius: 40px;
+        font-size: 0.8rem;
+        color: #1a5e7a;
+      }
+
+      /* ARCHIVE view */
+      .hero {
+        background: #fef7e8;
+        padding: 2.5rem 4rem 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        min-height: 280px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 32px 32px 0 0;
+      }
+
+      .hero-left {
+        width: 100%;
+        max-width: 500px;
+        padding: 0 15px;
+        box-sizing: border-box;
+      }
+
+      .hero-images {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 260px;
+        position: relative;
+      }
+
+      .img-card {
+        width: 112px;
+        height: 168px;
+        border-radius: 8px;
+        overflow: hidden;
+        position: absolute;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+        transition: transform 0.3s ease;
+        background: white;
+      }
+
+      .img-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Fan positioning for 5 cards */
+      .img-card--1 {
+        transform: rotate(-12deg) translateX(-170px) translateY(6px);
+        z-index: 1;
+      }
+      .img-card--2 {
+        transform: rotate(-6deg) translateX(-100px) translateY(3px);
+        z-index: 2;
+      }
+      .img-card--3 {
+        transform: rotate(0deg) translateX(0px) translateY(0px);
+        z-index: 3;
+      }
+      .img-card--4 {
+        transform: rotate(6deg) translateX(100px) translateY(3px);
+        z-index: 4;
+      }
+      .img-card--5 {
+        transform: rotate(12deg) translateX(170px) translateY(6px);
+        z-index: 5;
+      }
+
+      /* Hover effects: fan out slightly */
+      .hero:hover .img-card--1 {
+        transform: rotate(-14deg) translateX(-180px) translateY(2px);
+      }
+      .hero:hover .img-card--2 {
+        transform: rotate(-7deg) translateX(-105px) translateY(1px);
+      }
+      .hero:hover .img-card--3 {
+        transform: rotate(0deg) translateX(0px) translateY(-2px);
+      }
+      .hero:hover .img-card--4 {
+        transform: rotate(7deg) translateX(105px) translateY(1px);
+      }
+      .hero:hover .img-card--5 {
+        transform: rotate(14deg) translateX(180px) translateY(2px);
+      }
+
+      .page-divider {
+        height: 1px;
+        background: #a869cc;
+        margin: 0 4rem;
+      }
+
+      .breadcrumb {
+        padding: 1.1rem 4rem 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        background: #a869cc;
+      }
+
+      .breadcrumb__link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .breadcrumb__link:hover {
+        color: #e85d24;
+      }
+
+      .breadcrumb__sep {
+        color: #fff;
+      }
+
+      .breadcrumb__current {
+        color: #fff;
+      }
+
+      .archive {
+        padding: 2rem 4rem 5rem;
+      }
+
+      .archive__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2.4rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .archive__title {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #8ba3b0;
+      }
+
+      .filter-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .filter-label {
+        font-size: 12px;
+        font-weight: 400;
+        color: #8ba3b0;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+
+      .vol-filter {
+        appearance: none;
+        background-color: #ffffff;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 11px center;
+        border: 1px solid #cbdde6;
+        border-radius: 14px;
+        padding: 7px 34px 7px 13px;
+        font-family: inherit;
+        font-size: 13px;
+        color: #1a2c3e;
+        cursor: pointer;
+        min-width: 148px;
+        transition: border-color 0.2s;
+      }
+      .vol-filter:focus {
+        outline: none;
+        border-color: #e85d24;
+      }
+
+      .pdf-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 22px;
+      }
+
+      .pdf-card {
+        background: white;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid #e2edf2;
+        cursor: pointer;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+        animation: fadeUp 0.4s ease both;
+      }
+
+      .pdf-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 26px rgba(0, 0, 0, 0.08);
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .pdf-thumb {
+        height: 320px;
+        /* display: flex;
+        align-items: center;
+        justify-content: center; */
+        position: relative;
+        overflow: hidden;
+      }
+      .pdf-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .pdf-name {
+        font-size: 13px;
+        font-weight: 400;
+        color: #1a2c3e;
+        line-height: 1.35;
+        margin-bottom: 4px;
+      }
+
+      .pdf-meta {
+        font-size: 11px;
+        color: #8ba3b0;
+      }
+
+      .pdf-proceedings-note {
+        font-size: 10px;
+        color: #4a6a7a;
+        line-height: 1.4;
+        margin-top: 5px;
+        font-style: italic;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          padding: 2rem 2rem 3rem;
+        }
+        .page-divider {
+          margin: 0 2rem;
+        }
+        .breadcrumb {
+          padding: 1rem 2rem 0;
+        }
+        .archive {
+          padding: 2rem 2rem 4rem;
+        }
+        .img-card {
+          width: 85px;
+          height: 128px;
+        }
+        .img-card--1 {
+          transform: rotate(-12deg) translateX(-120px);
+        }
+        .img-card--2 {
+          transform: rotate(-6deg) translateX(-70px);
+        }
+        .img-card--3 {
+          transform: rotate(0deg) translateX(0px);
+        }
+        .img-card--4 {
+          transform: rotate(6deg) translateX(70px);
+        }
+        .img-card--5 {
+          transform: rotate(12deg) translateX(120px);
+        }
+        .hero:hover .img-card--1 {
+          transform: rotate(-14deg) translateX(-128px);
+        }
+        .hero:hover .img-card--5 {
+          transform: rotate(14deg) translateX(128px);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          flex-direction: column;
+          min-height: auto;
+          padding-bottom: 3rem;
+          padding-top: 3rem;
+        }
+
+        .hero-images {
+          width: 100%;
+          height: 200px;
+        }
+        .img-card {
+          width: 70px;
+          height: 105px;
+        }
+        .img-card--1 {
+          transform: rotate(-12deg) translateX(-95px);
+        }
+        .img-card--2 {
+          transform: rotate(-6deg) translateX(-55px);
+        }
+        .img-card--3 {
+          transform: rotate(0deg) translateX(0px);
+        }
+        .img-card--4 {
+          transform: rotate(6deg) translateX(55px);
+        }
+        .img-card--5 {
+          transform: rotate(12deg) translateX(95px);
+        }
+        .archive__header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="mainNav">
+      <a data-view="home" class="nav-link"> Home</a>
+      <a data-view="articles" class="nav-link active"> Articles</a>
+      <a data-view="archives" class="nav-link">Archives</a>
+    </nav>
+
+    <main>
+      <!-- HOME VIEW -->
+      <section id="homeView" class="view-section">
+        <div class="hero-card">
+          <h1 style="color: #0b4b66; font-size: 2rem; margin-bottom: 0.5rem">
+            East African Journal of Neurological Sciences
+          </h1>
+          <p style="font-size: 1.1rem; margin-bottom: 1.5rem">
+            Advancing neuroscience across Africa and beyond — bridging clinical
+            practice, research, and education.
+          </p>
+          <hr style="margin: 1.5rem 0; border-color: #e0edf3" />
+          <h3>Aims & Scope</h3>
+          <p>The journal publishes high-quality manuscripts covering:</p>
+          <div class="scope-grid" id="homeScopeList"></div>
+          <p style="margin-top: 1.5rem">
+            <strong>ISSN:</strong> 2708-1822 (Online) |
+            <strong>Open Access</strong> | <strong>Peer-Reviewed</strong>
+          </p>
+          <p>
+            Indexed in African Journals Online (AJOL), DOAJ, and Scopus emerging
+            sources.
+          </p>
+        </div>
+        <div style="background: white; border-radius: 28px; padding: 1.5rem">
+          <h3> Featured Article</h3>
+          <p>
+            <strong
+              >Treatment Response Utilizing CSF IL 1 Beta Level In Bacterial
+              Meningitis Patients</strong
+            ><br />
+            Nasser Abdallah et al. – Pages 67-71<br />
+            A groundbreaking study on CSF biomarkers in bacterial meningitis
+            management.
+          </p>
+          <a
+            href="#"
+            class="pdf-link"
+            style="display: inline-block; margin-top: 0.8rem"
+            >Read more →</a
+          >
+        </div>
+      </section>
+
+      <!-- ARTICLES VIEW -->
+      <section id="articlesView" class="view-section active">
+        <div class="article-layout">
+          <div class="filters-panel">
+            <div class="filter-group">
+              <label> ARTICLE TYPE</label>
+              <select id="typeFilter" aria-label="Filter by article type">
+                <option value="">— All types —</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label> SCOPE / FIELD</label>
+              <select id="scopeFilter" aria-label="Filter by scientific scope">
+                <option value="">— All scopes —</option>
+              </select>
+            </div>
+            <button class="reset-btn" id="resetFiltersBtn">
+              ⟳ Reset all filters
+            </button>
+          </div>
+
+          <div class="right-articles">
+            <div class="articles-header">
+              <h2>Published Articles</h2>
+              <span class="result-count" id="resultCount">0 articles</span>
+            </div>
+            <div id="articlesContainer" class="articles-grid">
+              <div class="empty-state">Loading articles...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARCHIVES VIEW with image fan -->
+      <section id="archivesView" class="view-section">
+        <section class="hero">
+          <div class="hero-left">
+            <p>
+              The East African Journal of Neurological Sciences (ISSN: 2957-4323
+              (online) & 2957-4315 (print)) is the official journal of the East
+              African Association of Neurological Surgeons (EAANS).
+            </p>
+          </div>
+          <div class="hero-images" aria-hidden="true">
+            <div class="img-card img-card--1">
+              <img
+                src="https://theeajns.org/public/journals/1/cover_issue_16_en.png"
+                alt="Journal cover Vol 16"
+              />
+            </div>
+            <div class="img-card img-card--2">
+              <img
+                src="https://theeajns.org/public/journals/1/cover_issue_14_en.png"
+                alt="Journal cover Vol 14"
+              />
+            </div>
+            <div class="img-card img-card--3">
+              <img
+                src="https://theeajns.org/public/journals/1/cover_issue_8_en_US.jpg"
+                alt="Journal cover Vol 8"
+              />
+            </div>
+            <div class="img-card img-card--4">
+              <img
+                src="https://theeajns.org/public/journals/1/cover_issue_6_en_US.jpg"
+                alt="Journal cover Vol 6"
+              />
+            </div>
+            <div class="img-card img-card--5">
+              <img
+                src="https://theeajns.org/public/journals/1/cover_issue_1_en_US.jpg"
+                alt="Journal cover Vol 1"
+              />
+            </div>
+          </div>
+        </section>
+        <div class="page-divider"></div>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="#" class="breadcrumb__link">Home</a>
+          <span class="breadcrumb__sep">/</span>
+          <span class="breadcrumb__current">Archives</span>
+        </nav>
+        <section class="archive" id="archive">
+          <div class="archive__header">
+            <h2 class="archive__title">Archives</h2>
+            <div class="filter-wrap">
+              <span class="filter-label">Filter by volume</span>
+              <select
+                class="vol-filter"
+                id="volFilter"
+                aria-label="Filter by volume"
+              >
+                <option value="all">All volumes</option>
+                <option value="5">Vol. 5</option>
+                <option value="4">Vol. 4</option>
+                <option value="3">Vol. 3</option>
+                <option value="2">Vol. 2</option>
+                <option value="1">Vol. 1</option>
+              </select>
+            </div>
+          </div>
+          <div class="pdf-grid" id="pdfGrid"></div>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      // -------- DATA ----------
+      const ARTICLE_TYPES_LIST = [
+        "Original research articles",
+        "Case reports",
+        "Case series",
+        "Reviews",
+        "Short communications",
+        "Technical notes",
+        "Editorials",
+        "Letters to the editor",
+        "Commentaries",
+      ];
+
+      const SCOPE_FIELDS_LIST = [
+        "Clinical and experimental neurosurgery",
+        "Clinical neurophysiology",
+        "Neuroanatomy",
+        "Neurology",
+        "Neuro-ophthalmology",
+        "Neuroradiology",
+        "Neuropathology",
+        "Neuro-otology",
+        "Neuro-oncology",
+        "Molecular biology",
+        "Innovations in neuroscience",
+        "Historical personalities or events relevant to neurological sciences, particularly in Africa",
+        "Health advocacy in neurological sciences",
+        "Neurosurgical education",
+        "Global neurology",
+        "Basic sciences related to neuroscience",
+        "Genetic and molecular studies relevant to neurological conditions",
+      ];
+
+      const articlesData = [
+        {
+          id: 1,
+          title:
+            "Treatment Response Utilizing CSF IL 1 Beta Level In Bacterial Meningitis Patients",
+          authors:
+            "Nasser Abdallah, Akram Eldeghedy, Ahmed Abd Alhakam Kamel Ibrahim, Walid Ismail Ellakany",
+          pages: "67-71",
+          type: "Original research articles",
+          scope: "Molecular biology",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_357_358_coverImage_en.jpg",
+        },
+        {
+          id: 2,
+          title:
+            "Functional and Surgical Outcomes of Intrathecal Baclofen Therapy: A Retrospective Study at a Tertiary Neurosurgical Centre in Upper Egypt (2022–2024)",
+          authors:
+            "Mohammad Khallaf, Ahmed Zanaty, Osama Ramadan, Farrag Mohammad",
+          pages: "72-79",
+          type: "Case series",
+          scope: "Clinical and experimental neurosurgery",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_360_361_coverImage_en.jpg",
+        },
+        {
+          id: 3,
+          title:
+            "Nutrition And Neurodegenerative Diseases: Patient Practices And Physician Perceptions In An Algerian Cohort Study",
+          authors:
+            "Anissa Fizazi, Ahmed Abbou Abdellah Behar, Naima Hadjer Dinar, Amina Belhadj, Mohamed Bouchetara, Amina Chantouf, Tewfik Sahraoui",
+          pages: "80-87",
+          type: "Original research articles",
+          scope: "Neurology",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_362_363_coverImage_en.jpg",
+        },
+        {
+          id: 4,
+          title:
+            "Prescription of Brain CT in Traumatic Brain Injury: A Prospective Audit in a Senegalese Level-2 Hospital (2024 – 2025)",
+          authors:
+            "Gueye Coumba, Ibrahima Niang, Mélaine Olympio, Gueye El Hadji Aboubacar, Souare Mady",
+          pages: "88-92",
+          type: "Original research articles",
+          scope: "Neurology; Neuroradiology; Clinical neurophysiology",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_358_359_coverImage_en.jpg",
+        },
+      ];
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        return str.replace(/[&<>]/g, (m) =>
+          m === "&" ? "&amp;" : m === "<" ? "&lt;" : "&gt;",
+        );
+      }
+
+      // -------- ARTICLES VIEW ----------
+      const typeSelect = document.getElementById("typeFilter");
+      const scopeSelect = document.getElementById("scopeFilter");
+      const articlesContainer = document.getElementById("articlesContainer");
+      const resultCountSpan = document.getElementById("resultCount");
+      const resetBtn = document.getElementById("resetFiltersBtn");
+
+      function populateSelectors() {
+        if (!typeSelect) return;
+        typeSelect.innerHTML = '<option value="">— All types —</option>';
+        ARTICLE_TYPES_LIST.forEach((type) => {
+          const opt = document.createElement("option");
+          opt.value = type;
+          opt.textContent = type;
+          typeSelect.appendChild(opt);
+        });
+        scopeSelect.innerHTML = '<option value="">— All scopes —</option>';
+        SCOPE_FIELDS_LIST.forEach((scope) => {
+          const opt = document.createElement("option");
+          opt.value = scope;
+          opt.textContent = scope;
+          scopeSelect.appendChild(opt);
+        });
+      }
+
+      function getFilteredArticles() {
+        const selectedType = typeSelect ? typeSelect.value : "";
+        const selectedScope = scopeSelect ? scopeSelect.value : "";
+        return articlesData.filter((article) => {
+          const typeMatch = !selectedType || article.type === selectedType;
+          const scopeMatch = !selectedScope || article.scope === selectedScope;
+          return typeMatch && scopeMatch;
+        });
+      }
+
+      function renderArticles() {
+        if (!articlesContainer) return;
+        const filtered = getFilteredArticles();
+        const count = filtered.length;
+        if (resultCountSpan)
+          resultCountSpan.textContent = `${count} article${count !== 1 ? "s" : ""}`;
+        if (filtered.length === 0) {
+          articlesContainer.innerHTML = `<div class="empty-state">No articles match the selected filters.<br>Try changing article type or scope.</div>`;
+          return;
+        }
+        const cards = filtered
+          .map(
+            (article) => `
+          <div class="article-card">
+            <div class="article-img">
+            <img src=${article.img_url} alt=${escapeHtml(article.title)}/>
+            </div>
+            <div class="article-content">
+            <div class="article-title">${escapeHtml(article.title)}</div>
+            <div class="article-authors">${escapeHtml(article.authors)}</div>
+            <div class="meta-badges">
+              <span class="badge"> ${escapeHtml(article.type)}</span>
+              <span class="badge badge-scope">${escapeHtml(article.scope)}</span>
+            </div>
+            <div class="pages-pdf-row">
+              <div class="pagination-info"> Pages: ${escapeHtml(article.pages)}</div>
+              <a href="#" class="pdf-link" target="_blank"> Download PDF</a>
+            </div>
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+        articlesContainer.innerHTML = cards;
+      }
+
+      function resetFilters() {
+        if (typeSelect) typeSelect.value = "";
+        if (scopeSelect) scopeSelect.value = "";
+        renderArticles();
+      }
+
+      // -------- ARCHIVE VIEW (with PDF grid) ----------
+      const ARCHIVE_VOLUMES = [
+        {
+          id: "v5n2",
+          vol: 5,
+          label: "Vol. 5 No. 2",
+          year: 2026,
+          name: "Vol. 5 No. 2 (2026)",
+          color: "#e85d24",
+          bgColor: "#fdf1ec",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_16_en.png",
+        },
+        {
+          id: "v5n1",
+          vol: 5,
+          label: "Vol. 5 No. 1",
+          year: 2026,
+          name: "Vol. 5 No. 1 (2026)",
+          color: "#e85d24",
+          bgColor: "#fdf1ec",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_15_en.jpg",
+        },
+        {
+          id: "v4supp1",
+          vol: 4,
+          label: "Vol. 4 Supp 1",
+          year: 2025,
+          name: "Vol. 4 Supp 1 (2025) - EAANS Proceedings",
+          color: "#1e6fa8",
+          bgColor: "#eaf3fb",
+          isProceedings: true,
+          proceedingsNote:
+            "Proceedings of the 13th Annual EAANS, Mombasa, Kenya, 28–30 Nov 2025.",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_14_en.png",
+        },
+        {
+          id: "v4n3",
+          vol: 4,
+          label: "Vol. 4 No. 3",
+          year: 2025,
+          name: "Vol. 4 No. 3 (2025)",
+          color: "#1e6fa8",
+          bgColor: "#eaf3fb",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_12_en.png",
+        },
+        {
+          id: "v4n2",
+          vol: 4,
+          label: "Vol. 4 No. 2",
+          year: 2025,
+          name: "Vol. 4 No. 2 (2025)",
+          color: "#1e6fa8",
+          bgColor: "#eaf3fb",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_11_en_US.png",
+        },
+        {
+          id: "v4n1",
+          vol: 4,
+          label: "Vol. 4 No. 1",
+          year: 2025,
+          name: "Vol. 4 No. 1 (2025)",
+          color: "#1e6fa8",
+          bgColor: "#eaf3fb",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_10_en_US.png",
+        },
+        {
+          id: "v3supp1",
+          vol: 3,
+          label: "Vol. 3 Supp 1",
+          year: 2024,
+          name: "Vol. 3 Supp 1 (2024) - EAANS Proceedings",
+          color: "#2e7d5a",
+          bgColor: "#e8f5ee",
+          isProceedings: true,
+          proceedingsNote:
+            "Proceedings of the 12th Annual EAANS, Diani, Kenya, 28–30 Nov 2024.",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_9_en_US.png",
+        },
+        {
+          id: "v3n2",
+          vol: 3,
+          label: "Vol. 3 No. 2",
+          year: 2024,
+          name: "Vol. 3 No. 2 (2024)",
+          color: "#2e7d5a",
+          bgColor: "#e8f5ee",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_8_en_US.jpg",
+        },
+        {
+          id: "v3n1",
+          vol: 3,
+          label: "Vol. 3 No. 1",
+          year: 2024,
+          name: "Vol. 3 No. 1 (2024)",
+          color: "#2e7d5a",
+          bgColor: "#e8f5ee",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_7_en_US.png",
+        },
+        {
+          id: "v2n2",
+          vol: 2,
+          label: "Vol. 2 No. 2",
+          year: 2023,
+          name: "Vol. 2 No. 2 (2023)",
+          color: "#7a3a9a",
+          bgColor: "#f4eef9",
+          isProceedings: false,
+          proceedingsNote: null,
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_6_en_US.jpg",
+        },
+      ];
+
+      function buildArchiveCard(item, index) {
+        const delay = index * 50 + "ms";
+        return `
+          <article class="pdf-card" data-vol="${item.vol}" style="animation-delay:${delay};" tabindex="0">
+            <div class="pdf-thumb" style="background:${item.bgColor};">
+                <img src=${item.img_url} alt=${escapeHtml(item.name)}/>
+            </div>
+            <div class="pdf-info">
+              <p class="pdf-name">${escapeHtml(item.name)}</p>
+              <p class="pdf-meta">${item.year}</p>
+            </div>
+          </article>
+        `;
+      }
+
+      let archiveFilterAttached = false;
+      function renderArchiveGrid(filterVol = "all") {
+        const grid = document.getElementById("pdfGrid");
+        if (!grid) return;
+        const filtered =
+          filterVol === "all"
+            ? ARCHIVE_VOLUMES
+            : ARCHIVE_VOLUMES.filter((v) => String(v.vol) === filterVol);
+        if (filtered.length === 0) {
+          grid.innerHTML =
+            '<p style="color:#999;font-size:14px;grid-column:1/-1;padding:2rem 0;">No issues found for this volume.</p>';
+          return;
+        }
+        grid.innerHTML = filtered
+          .map((item, idx) => buildArchiveCard(item, idx))
+          .join("");
+      }
+
+      function initArchives() {
+        const volSelect = document.getElementById("volFilter");
+        if (!volSelect) return;
+        renderArchiveGrid(volSelect.value);
+        if (!archiveFilterAttached) {
+          volSelect.addEventListener("change", (e) => {
+            renderArchiveGrid(e.target.value);
+          });
+          archiveFilterAttached = true;
+        }
+      }
+
+      // -------- HOME SCOPE ----------
+      function populateHomeScope() {
+        const container = document.getElementById("homeScopeList");
+        if (!container) return;
+        container.innerHTML = SCOPE_FIELDS_LIST.map(
+          (scope) => `<span class="scope-tag">${escapeHtml(scope)}</span>`,
+        ).join("");
+      }
+
+      // -------- NAVIGATION ----------
+      function activateView(viewId) {
+        document
+          .querySelectorAll(".view-section")
+          .forEach((section) => section.classList.remove("active"));
+        const activeSection = document.getElementById(viewId);
+        if (activeSection) activeSection.classList.add("active");
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+          if (
+            link.getAttribute("data-view") ===
+            viewId.replace("View", "").toLowerCase()
+          ) {
+            link.classList.add("active");
+          }
+        });
+        if (viewId === "articlesView") renderArticles();
+        if (viewId === "archivesView") {
+          const volSelect = document.getElementById("volFilter");
+          if (volSelect) renderArchiveGrid(volSelect.value);
+        }
+      }
+
+      function setupNavigation() {
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const viewName = link.getAttribute("data-view");
+            if (viewName === "home") activateView("homeView");
+            else if (viewName === "articles") activateView("articlesView");
+            else if (viewName === "archives") activateView("archivesView");
+          });
+        });
+        const currentActive = document.querySelector(".nav-link.active");
+        if (
+          !currentActive ||
+          currentActive.getAttribute("data-view") !== "articles"
+        ) {
+          activateView("articlesView");
+        }
+      }
+
+      // -------- INIT ----------
+      function init() {
+        populateSelectors();
+        renderArticles();
+        populateHomeScope();
+        initArchives();
+        setupNavigation();
+        if (typeSelect && scopeSelect) {
+          typeSelect.addEventListener("change", renderArticles);
+          scopeSelect.addEventListener("change", renderArticles);
+        }
+        if (resetBtn) resetBtn.addEventListener("click", resetFilters);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    </script>
+  </body>
+</html>
