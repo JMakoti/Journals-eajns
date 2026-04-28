@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EAJNS | Articles</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="site-header">
+      <div class="container header-inner">
+        <div class="journal-brand">
+          <img
+            src="./assets/logo.webp"
+            decoding="async"
+            loading="lazy"
+            alt="EAJNS"
+            height="80px"
+          />
+        </div>
+      </div>
+      <div class="nav-bar">
+        <div class="container">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="about.html" class="nav-link">About the Journal</a>
+          <a href="editorialboard.html" class="nav-link">Editorial Board</a>
+          <a href="authors.html" class="nav-link">For Authors</a>
+          <a href="peerreviews.html" class="nav-link">Peer Review & Ethics</a>
+          <a href="articles.html" class="nav-link">Articles</a>
+          <a href="archives.html" class="nav-link">Archives</a>
+          <a href="announcements.html" class="nav-link">Announcements</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="manuscript.html" class="nav-link">Submit Manuscript</a>
+        </div>
+      </div>
+    </div>
+    <main>
+      <div class="container">
+        <section id="articlesView" class="view-section">
+          <div class="article-layout">
+            <div class="filters-panel">
+              <div class="filter-group">
+                <label> VOLUME</label
+                ><select id="volFilter">
+                  <option value="all">— All volumes —</option>
+                  <option value="5">Vol. 5</option>
+                  <option value="4">Vol. 4</option>
+                  <option value="3">Vol. 3</option>
+                  <option value="2">Vol. 2</option>
+                  <option value="1">Vol. 1</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label> ARTICLE TYPE</label
+                ><select id="typeFilter">
+                  <option value="">— All types —</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label> SCOPE / FIELD</label
+                ><select id="scopeFilter">
+                  <option value="">— All scopes —</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label> YEAR</label
+                ><select id="yearFilter">
+                  <option value="">— All years —</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                </select>
+              </div>
+              <button class="reset-btn" id="resetFiltersBtn">
+                ⟳ Reset all filters
+              </button>
+            </div>
+            <div class="right-articles">
+              <div class="articles-header">
+                <h2>Published Articles</h2>
+                <span class="result-count" id="resultCount">0 articles</span>
+              </div>
+              <div id="articlesContainer" class="articles-grid">
+                <div class="empty-state">Loading articles...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <div>
+          © 2026 East African Journal of Neurological Sciences | ISSN 2957-4323
+          (Online) – 2957-4315 (Print)
+        </div>
+        <div class="footer-links">
+          Official journal of the East African Association of Neurological
+          Surgeons
+        </div>
+      </div>
+    </footer>
+    <script>
+      const ARTICLE_TYPES_LIST = [
+        "Original research articles",
+        "Case reports",
+        "Case series",
+        "Reviews",
+        "Short communications",
+        "Technical notes",
+        "Editorials",
+        "Letters to the editor",
+        "Commentaries",
+      ];
+      const SCOPE_FIELDS_LIST = [
+        "Clinical and experimental neurosurgery",
+        "Clinical neurophysiology",
+        "Neuroanatomy",
+        "Neurology",
+        "Neuro-ophthalmology",
+        "Neuroradiology",
+        "Neuropathology",
+        "Neuro-otology",
+        "Neuro-oncology",
+        "Molecular biology",
+        "Innovations in neuroscience",
+        "Historical personalities or events relevant to neurological sciences, particularly in Africa",
+        "Health advocacy in neurological sciences",
+        "Neurosurgical education",
+        "Global neurology",
+        "Basic sciences related to neuroscience",
+        "Genetic and molecular studies relevant to neurological conditions",
+      ];
+
+      const articlesData = [
+        {
+          id: 1,
+          title:
+            "Treatment Response Utilizing CSF IL 1 Beta Level In Bacterial Meningitis Patients",
+          authors:
+            "Nasser Abdallah, Akram Eldeghedy, Ahmed Abd Alhakam Kamel Ibrahim, Walid Ismail Ellakany",
+          pages: "67-71",
+          type: "Original research articles",
+          scope: "Molecular biology",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_357_358_coverImage_en.jpg",
+          volume: "5",
+          issue: "2",
+          abstract:
+            "Bacterial meningitis is a serious infectious disease that is mainly caused by the inflammatory reaction. This inflammation leads to the release of biomarkers into the cerebrospinal fluid (CSF)",
+          published: "17-10-2025",
+        },
+        {
+          id: 2,
+          title:
+            "Functional and Surgical Outcomes of Intrathecal Baclofen Therapy: A Retrospective Study at a Tertiary Neurosurgical Centre in Upper Egypt (2022–2024)",
+          authors:
+            "Mohammad Khallaf, Ahmed Zanaty, Osama Ramadan, Farrag Mohammad",
+          pages: "72-79",
+          type: "Case series",
+          scope: "Clinical and experimental neurosurgery",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_360_361_coverImage_en.jpg",
+          volume: "5",
+          issue: "2",
+          abstract:
+            "Intrathecal baclofen (ITB) pump therapy is a well-established intervention for refractory spasticity. Its effectiveness depends not only on pharmacological action but also on surgical precision and multidisciplinary care",
+          published: "24-10-2025",
+        },
+        {
+          id: 3,
+          title:
+            "Nutrition And Neurodegenerative Diseases: Patient Practices And Physician Perceptions In An Algerian Cohort Study",
+          authors:
+            "Anissa Fizazi, Ahmed Abbou Abdellah Behar, Naima Hadjer Dinar, Amina Belhadj, Mohamed Bouchetara, Amina Chantouf, Tewfik Sahraoui",
+          pages: "80-87",
+          type: "Original research articles",
+          scope: "Neurology",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_362_363_coverImage_en.jpg",
+          volume: "5",
+          issue: "2",
+          abstract:
+            " Growing evidence suggests nutrition influences neurodegenerative disease risk and progression, yet clinical integration remains limited in developing countries. Objective: To evaluate dietary habits of patients with neurodegenerative diseases and healthcare professionals' perceptions in Oran, Algeria. ",
+          published: "16-12-2025",
+        },
+        {
+          id: 4,
+          title:
+            "Prescription of Brain CT in Traumatic Brain Injury: A Prospective Audit in a Senegalese Level-2 Hospital (2024 – 2025)",
+          authors:
+            "Gueye Coumba, Ibrahima Niang, Mélaine Olympio, Gueye El Hadji Aboubacar, Souare Mady",
+          pages: "88-92",
+          type: "Original research articles",
+          scope: "Neurology; Neuroradiology; Clinical neurophysiology",
+          img_url:
+            "https://theeajns.org/public/journals/1/submission_358_359_coverImage_en.jpg",
+        },
+      ];
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        return str.replace(/[&<>]/g, (m) =>
+          m === "&" ? "&amp;" : m === "<" ? "&lt;" : "&gt;",
+        );
+      }
+
+      const typeSelect = document.getElementById("typeFilter");
+      const scopeSelect = document.getElementById("scopeFilter");
+      const volSelect = document.getElementById("volFilter");
+      const yearSelect = document.getElementById("yearFilter");
+      const articlesContainer = document.getElementById("articlesContainer");
+      const resultCountSpan = document.getElementById("resultCount");
+      const resetBtn = document.getElementById("resetFiltersBtn");
+
+      function populateSelectors() {
+        if (!typeSelect) return;
+        typeSelect.innerHTML = '<option value="">— All types —</option>';
+        ARTICLE_TYPES_LIST.forEach((type) => {
+          const opt = document.createElement("option");
+          opt.value = type;
+          opt.textContent = type;
+          typeSelect.appendChild(opt);
+        });
+        scopeSelect.innerHTML = '<option value="">— All scopes —</option>';
+        SCOPE_FIELDS_LIST.forEach((scope) => {
+          const opt = document.createElement("option");
+          opt.value = scope;
+          opt.textContent = scope;
+          scopeSelect.appendChild(opt);
+        });
+      }
+
+      function getFilteredArticles() {
+        const selectedType = typeSelect ? typeSelect.value : "";
+        const selectedScope = scopeSelect ? scopeSelect.value : "";
+        const selectedVolume = volSelect ? volSelect.value : "";
+        const selectedYear = yearSelect ? yearSelect.value : "";
+
+        return articlesData.filter((article) => {
+          // Extract year from published date (format: dd-mm-yyyy)
+          const articleYear = article.published
+            ? article.published.split("-")[2]
+            : "";
+
+          return (
+            (!selectedType || article.type === selectedType) &&
+            (!selectedScope || article.scope.includes(selectedScope)) && // supports multi-scope
+            (selectedVolume === "all" || article.volume === selectedVolume) &&
+            (!selectedYear || articleYear === selectedYear)
+          );
+        });
+      }
+
+      function renderArticles() {
+        if (!articlesContainer) return;
+        const filtered = getFilteredArticles();
+        resultCountSpan.textContent = `${filtered.length} article${filtered.length !== 1 ? "s" : ""}`;
+        if (filtered.length === 0) {
+          articlesContainer.innerHTML = `<div class="empty-state">No articles match the selected filters.<br>Try changing article type or scope.</div>`;
+          return;
+        }
+        articlesContainer.innerHTML = filtered
+          .map(
+            (article) => `
+          <div class="article-card">
+            <div class="article-img"><img src="${article.img_url}" alt="${escapeHtml(article.title)}"/></div>
+            <div class="article-content">
+              <div class="article-title">${escapeHtml(article.title)}</div>
+              <div class="article-authors">${escapeHtml(article.authors)}</div>
+              <div class="meta-badges"><span class="badge">${escapeHtml(article.type)}</span><span class="badge badge-scope">${escapeHtml(article.scope)}</span></div>
+              <div class="pages-pdf-row"><div class="pagination-info">Pages: ${escapeHtml(article.pages)}</div><a href="#" class="pdf-link" target="_blank"> Download PDF</a></div>
+            </div>
+          </div>`,
+          )
+          .join("");
+      }
+
+      function resetFilters() {
+        if (typeSelect) typeSelect.value = "";
+        if (scopeSelect) scopeSelect.value = "";
+        if (volSelect) volSelect.value = "all";
+        if (yearSelect) yearSelect.value = "";
+        renderArticles();
+      }
+
+      function init() {
+        populateSelectors();
+        renderArticles();
+
+        [typeSelect, scopeSelect, volSelect, yearSelect].forEach((el) => {
+          if (el) el.addEventListener("change", renderArticles);
+        });
+
+        if (resetBtn) resetBtn.addEventListener("click", resetFilters);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    </script>
+  </body>
+</html>

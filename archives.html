@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EAJNS | Archives</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="site-header">
+      <div class="container header-inner">
+        <div class="journal-brand">
+          <img
+            src="./assets/logo.webp"
+            decoding="async"
+            loading="lazy"
+            alt="EAJNS"
+            height="80px"
+          />
+        </div>
+      </div>
+      <div class="nav-bar">
+        <div class="container">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="about.html" class="nav-link">About the Journal</a>
+          <a href="editorialboard.html" class="nav-link">Editorial Board</a>
+          <a href="authors.html" class="nav-link">For Authors</a>
+          <a href="peerreviews.html" class="nav-link">Peer Review & Ethics</a>
+          <a href="articles.html" class="nav-link">Articles</a>
+          <a href="archives.html" class="nav-link">Archives</a>
+          <a href="announcements.html" class="nav-link">Announcements</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="manuscript.html" class="nav-link">Submit Manuscript</a>
+        </div>
+      </div>
+    </div>
+    <main>
+      <div class="container">
+        <section id="archivesView" class="view-section">
+          <section class="hero">
+            <div class="hero-left">
+              <p>
+                The East African Journal of Neurological Sciences (ISSN:
+                2957-4323 (online) & 2957-4315 (print)) is the official journal
+                of the East African Association of Neurological Surgeons
+                (EAANS).
+              </p>
+            </div>
+            <div class="hero-images" aria-hidden="true">
+              <div class="img-card img-card--1">
+                <img
+                  src="https://theeajns.org/public/journals/1/cover_issue_16_en.png"
+                  alt="Vol 16"
+                />
+              </div>
+              <div class="img-card img-card--2">
+                <img
+                  src="https://theeajns.org/public/journals/1/cover_issue_14_en.png"
+                  alt="Vol 14"
+                />
+              </div>
+              <div class="img-card img-card--3">
+                <img
+                  src="https://theeajns.org/public/journals/1/cover_issue_8_en_US.jpg"
+                  alt="Vol 8"
+                />
+              </div>
+              <div class="img-card img-card--4">
+                <img
+                  src="https://theeajns.org/public/journals/1/cover_issue_6_en_US.jpg"
+                  alt="Vol 6"
+                />
+              </div>
+              <div class="img-card img-card--5">
+                <img
+                  src="https://theeajns.org/public/journals/1/cover_issue_1_en_US.jpg"
+                  alt="Vol 1"
+                />
+              </div>
+            </div>
+          </section>
+          <div class="page-divider"></div>
+          <section class="archive">
+            <div class="archive__header">
+              <h2 class="archive__title">Archives</h2>
+              <div class="filter-wrap">
+                <span class="filter-label">Filter by volume</span
+                ><select class="vol-filter" id="volFilter">
+                  <option value="all">All volumes</option>
+                  <option value="5">Vol. 5</option>
+                  <option value="4">Vol. 4</option>
+                  <option value="3">Vol. 3</option>
+                  <option value="2">Vol. 2</option>
+                  <option value="1">Vol. 1</option>
+                </select>
+              </div>
+            </div>
+            <div class="pdf-grid" id="pdfGrid"></div>
+          </section>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <div>
+          © 2026 East African Journal of Neurological Sciences | ISSN 2957-4323
+          (Online) – 2957-4315 (Print)
+        </div>
+        <div class="footer-links">
+          Official journal of the East African Association of Neurological
+          Surgeons
+        </div>
+      </div>
+    </footer>
+    <script>
+      // ---------- ARCHIVES -----------------
+      const ARCHIVE_VOLUMES = [
+        {
+          id: "v5n2",
+          vol: 5,
+          name: "Vol. 5 No. 2 (2026)",
+          year: 2026,
+          bgColor: "#fdf1ec",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_16_en.png",
+        },
+        {
+          id: "v5n1",
+          vol: 5,
+          name: "Vol. 5 No. 1 (2026)",
+          year: 2026,
+          bgColor: "#fdf1ec",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_15_en.jpg",
+        },
+        {
+          id: "v4supp1",
+          vol: 4,
+          name: "Vol. 4 Supp 1 (2025) - EAANS Proceedings",
+          year: 2025,
+          bgColor: "#eaf3fb",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_14_en.png",
+        },
+        {
+          id: "v4n3",
+          vol: 4,
+          name: "Vol. 4 No. 3 (2025)",
+          year: 2025,
+          bgColor: "#eaf3fb",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_12_en.png",
+        },
+        {
+          id: "v4n2",
+          vol: 4,
+          name: "Vol. 4 No. 2 (2025)",
+          year: 2025,
+          bgColor: "#eaf3fb",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_11_en_US.png",
+        },
+        {
+          id: "v4n1",
+          vol: 4,
+          name: "Vol. 4 No. 1 (2025)",
+          year: 2025,
+          bgColor: "#eaf3fb",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_10_en_US.png",
+        },
+        {
+          id: "v3supp1",
+          vol: 3,
+          name: "Vol. 3 Supp 1 (2024) - EAANS Proceedings",
+          year: 2024,
+          bgColor: "#e8f5ee",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_9_en_US.png",
+        },
+        {
+          id: "v3n2",
+          vol: 3,
+          name: "Vol. 3 No. 2 (2024)",
+          year: 2024,
+          bgColor: "#e8f5ee",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_8_en_US.jpg",
+        },
+        {
+          id: "v3n1",
+          vol: 3,
+          name: "Vol. 3 No. 1 (2024)",
+          year: 2024,
+          bgColor: "#e8f5ee",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_7_en_US.png",
+        },
+        {
+          id: "v2n2",
+          vol: 2,
+          name: "Vol. 2 No. 2 (2023)",
+          year: 2023,
+          bgColor: "#f4eef9",
+          img_url:
+            "https://theeajns.org/public/journals/1/cover_issue_6_en_US.jpg",
+        },
+      ];
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        return str.replace(/[&<>]/g, (m) =>
+          m === "&" ? "&amp;" : m === "<" ? "&lt;" : "&gt;",
+        );
+      }
+
+      function renderArchiveGrid(filterVol = "all") {
+        const grid = document.getElementById("pdfGrid");
+        if (!grid) return;
+        const filtered =
+          filterVol === "all"
+            ? ARCHIVE_VOLUMES
+            : ARCHIVE_VOLUMES.filter((v) => String(v.vol) === filterVol);
+        if (filtered.length === 0) {
+          grid.innerHTML =
+            '<p style="color:#999;font-size:14px;grid-column:1/-1;padding:2rem 0;">No issues found for this volume.</p>';
+          return;
+        }
+        grid.innerHTML = filtered
+          .map(
+            (item, idx) =>
+              `<article class="pdf-card" data-vol="${item.vol}" style="animation-delay:${idx * 50}ms;"><div class="pdf-thumb" style="background:${item.bgColor};"><img src="${item.img_url}" alt="${escapeHtml(item.name)}"/></div><div class="pdf-info"><p class="pdf-name">${escapeHtml(item.name)}</p><p class="pdf-meta">${item.year}</p></div></article>`,
+          )
+          .join("");
+      }
+
+      function initArchives() {
+        const volSelect = document.getElementById("volFilter");
+        if (volSelect) {
+          renderArchiveGrid(volSelect.value);
+          volSelect.addEventListener("change", (e) =>
+            renderArchiveGrid(e.target.value),
+          );
+        }
+      }
+
+      function init() {
+        initArchives();
+      }
+      if (document.readyState === "loading")
+        document.addEventListener("DOMContentLoaded", init);
+      else init();
+    </script>
+  </body>
+</html>
