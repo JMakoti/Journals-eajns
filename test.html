@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>EAJNS | Ethics & Policies</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #eef2f5;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      color: #1a2c3e;
+      padding: 2rem 1rem;
+    }
+
+    /* main container – elegant card-like presentation */
+    .policies-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    /* inner spacing */
+    .policies-inner {
+      padding: 2rem 2rem 2.8rem 2rem;
+    }
+
+    /* each major section */
+    .policy-section {
+      margin-bottom: 2.8rem;
+      scroll-margin-top: 1rem;
+    }
+
+    .policy-section:last-child {
+      margin-bottom: 0;
+    }
+
+    /* headings hierarchy */
+    .policy-section h3 {
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0a2942;
+      border-left: 5px solid #1e6f5c;
+      padding-left: 1rem;
+      margin-bottom: 1.2rem;
+      margin-top: 0;
+      line-height: 1.3;
+    }
+
+    /* sub-headings inside AI policy (h3 and h4) */
+    .policy-section h3 strong,
+    .policy-section h3 b {
+      font-weight: 600;
+      color: #0a2942;
+    }
+
+    .subheading {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e4a6e;
+      margin: 1.2rem 0 0.6rem 0;
+      padding-bottom: 0.2rem;
+      border-bottom: 2px solid #e2e9f0;
+      display: inline-block;
+    }
+
+    /* paragraphs */
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #2c3f4f;
+      line-height: 1.55;
+    }
+
+    /* lists – clean spacing */
+    ul, ol {
+      margin: 0.75rem 0 1.2rem 1.8rem;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+      color: #2c3f4f;
+    }
+
+    li strong {
+      color: #135b4c;
+      font-weight: 600;
+    }
+
+    /* specific for authorship long bullet, keep readability */
+    .policy-section ul li {
+      text-align: left;
+    }
+
+    /* links */
+    a {
+      color: #1e6f5c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #0a463a;
+      border-bottom: 1px solid #1e6f5c;
+    }
+
+    /* subtle highlights for compliance statements */
+    .compliance-note {
+      background: #f8fafc;
+      border-left: 4px solid #1e6f5c;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+
+    /* AI policy sub-sections: we treat internal headings nicely */
+    .ai-sub {
+      margin-top: 1.2rem;
+    }
+
+    .ai-sub p {
+      margin-bottom: 0.5rem;
+    }
+
+    hr {
+      margin: 1.8rem 0;
+      border: none;
+      height: 1px;
+      background: #e2e9f0;
+    }
+
+    /* copyright/licensing block branding */
+    .cc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f0f6f4;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1e6f5c;
+      margin-top: 0.2rem;
+    }
+
+    /* Responsive & mobile refinement */
+    @media (max-width: 680px) {
+      .policies-inner {
+        padding: 1.5rem;
+      }
+
+      .policy-section h3 {
+        font-size: 1.4rem;
+        padding-left: 0.75rem;
+      }
+
+      .subheading {
+        font-size: 1.2rem;
+      }
+
+      ul, ol {
+        margin-left: 1.2rem;
+      }
+
+      body {
+        padding: 1rem 0.8rem;
+      }
+    }
+
+    /* add smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* small decorative header line */
+    .journal-header {
+      border-bottom: 1px solid #e2eaf1;
+      padding-bottom: 0.75rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .journal-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      color: #1e4a6e;
+    }
+
+    .journal-badge {
+      font-size: 0.8rem;
+      background: #eef2fa;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      color: #1e6f5c;
+    }
+
+    /* blockquotes or box for archiving */
+    .archive-box {
+      background: #fafcfd;
+      border-radius: 20px;
+      padding: 1rem 1.4rem;
+      border: 1px solid #e2edf2;
+      margin-top: 0.5rem;
+    }
+
+    /* better spacing for the long list of ethics */
+    .compact-list li {
+      margin-bottom: 0.7rem;
+    }
+  </style>
+</head>
+<body>
+<div class="policies-container">
+  <div class="policies-inner">
+
+    <!-- ETHICS IN PUBLISHING -->
+    <div class="policy-section">
+      <h3>Ethics in Publishing</h3>
+      <p>The publication of an article in a peer-reviewed journal is an essential building block in the development of a coherent and respected network of knowledge. It is a direct reflection of the quality of work of the author and the institutions that support them.</p>
+      <p>Ethics topics to consider when publishing:</p>
+      <ul class="compact-list">
+        <li><strong>Authorship of the paper:</strong> Authorship should be limited to those who have made a significant contribution to the conception, design, execution, or interpretation of the reported study. All authors must sign a document indicating that they have read and approved the contents of the manuscript. Each author must have contributed significantly to, and be willing to take public responsibility for, one or more aspects of the study: its design, data acquisition and analysis, and interpretation of data. All authors must have been actively involved in the drafting and critical revision of the manuscript and each must provide final approval of the version to be published. All authors will be held equally responsible for ensuring that documentation is correct and accurate, and that the required permissions have been obtained. No author may disclaim any part of the manuscript.</li>
+        <li><strong>Originality and plagiarism:</strong> The authors should ensure that they have written entirely original works, and if the authors have used the work and/or words of others that this has been appropriately cited or quoted. Previously published articles, including those published in non-English journals, are not eligible for publication. All manuscripts will be screened for plagiarism. Duplicate submissions are not allowed. If plagiarism is identified, the COPE guidelines on plagiarism will be followed.</li>
+        <li><strong>Data access and retention:</strong> Authors may be asked to provide the raw data in connection with a paper for editorial review, and should be prepared to provide public access to such data.</li>
+        <li><strong>Disclosure and conflicts of interest:</strong> All submissions must include disclosure of all relationships that could be viewed as presenting a potential conflict of interest. Sources of funding must be disclosed in the manuscript text.</li>
+        <li><strong>Fundamental errors in published works:</strong> When an author discovers a significant error or inaccuracy in his/her own published work, it is the author's obligation to promptly notify the journal editor or publisher and cooperate with the editor to retract or correct the paper.</li>
+      </ul>
+    </div>
+
+    <!-- HUMAN AND ANIMAL RIGHTS -->
+    <div class="policy-section">
+      <h3>Human and Animal Rights</h3>
+      <p>Statements of compliance are required if the work involves chemicals, procedures or equipment that have any unusual hazards inherent in their use, or if it involves the use of animal or human subjects.</p>
+      <p>If the work involves the use of human subjects, the author should ensure that the work described has been carried out in accordance with The Code of Ethics of the World Medical Association (Declaration of Helsinki) for experiments involving humans; Uniform Requirements for manuscripts submitted to Biomedical journals. Authors should include a statement in the manuscript that informed consent was obtained for experimentation with human subjects. The privacy rights of human subjects must always be observed.</p>
+      <p>All manuscripts dealing with experimental results in animals must include a statement that the study has been approved by an animal utilization study committee, and should comply with the ARRIVE guidelines. The Editor-in-Chief may further investigate that statement.</p>
+    </div>
+
+    <!-- LICENSING -->
+    <div class="policy-section">
+      <h3>Licensing</h3>
+      <p>All articles in the East African Journal of Neurological Sciences will be published under the Creative Commons Attribution License Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). See details on the <a href="#">Creative Commons website</a>.</p>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="policy-section">
+      <h3>Copyright</h3>
+      <p>All articles published in the East African Journal of Neurological Sciences (EAJNS) are licensed under the Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International License (<a href="#">CC BY-NC-ND 4.0</a>)</p>
+      <p>Under this license, readers are free to share, copy, and redistribute the material in any medium or format, provided that appropriate credit is given to the original author(s) and the journal. The material may not be used for commercial purposes, and no derivatives or adaptations of the work may be distributed without prior permission from the copyright holder.</p>
+      <p>Authors retain copyright of their work while granting the journal the right to publish and distribute the article as the original source of publication.</p>
+      <div class="cc-badge">📄 CC BY-NC-ND 4.0 · Share with attribution</div>
+    </div>
+
+    <!-- AI POLICY -->
+    <div class="policy-section">
+      <h3>AI Policy</h3>
+      <p>All authors are fully responsible for the originality, integrity, and authenticity of their submissions to the East African Journal of Neurological Sciences (EAJNS). Authors must ensure that manuscripts submitted are not under consideration by another journal and do not contain plagiarized material, unattributed content, or material that infringes upon third-party copyright.</p>
+      <p>The use of Artificial Intelligence (AI) tools, including large language models, is permitted only under the following conditions and must be properly disclosed in accordance with EAJNS submission guidelines:</p>
+
+      <div class="subheading">Permitted Uses of AI</div>
+      <p>AI tools may be used for:</p>
+      <ul>
+        <li>Editing the manuscript for language improvement, including spelling, grammar, clarity, and formatting, without altering the intellectual content.</li>
+        <li>Managing citations and references.</li>
+        <li>Editing non-data images, provided the scientific integrity of figures is not altered.</li>
+      </ul>
+
+      <div class="subheading">Prohibited Uses of AI</div>
+      <p>Manuscripts will not be considered for publication if AI tools have been used in any of the following ways:</p>
+      <ul>
+        <li>Designing the study methodology.</li>
+        <li>Generating or substantially contributing to the literature review or discussion sections.</li>
+        <li>Conducting, interpreting, or generating data analysis.</li>
+        <li>Writing or formulating the results, discussion, or conclusions.</li>
+        <li>Citing AI-generated content as a scholarly or authoritative source.</li>
+      </ul>
+      <p>If authors are found to be in violation of the EAJNS AI policy, this will result in immediate rejection of the manuscript or retraction if the article has already been published.</p>
+      <p>All permitted use of AI tools must be explicitly declared at the time of submission and clearly stated within the methodology section of the manuscript.</p>
+    </div>
+
+    <!-- ARCHIVING AND LONG-TERM PRESERVATION -->
+    <div class="policy-section">
+      <h3>Archiving and Long-term Preservation Policy</h3>
+      <div class="archive-box">
+        <p>The East African Journal of Neurosurgical Sciences (EAJNS) ensures long-term preservation of its content through active archiving in the Public Knowledge Project (PKP) Preservation Network. All published articles are securely stored in geographically distributed archives to safeguard against data loss and ensure continued accessibility. This system guarantees permanent availability of journal content, even in the event the journal website becomes unavailable.</p>
+      </div>
+    </div>
+
+    <!-- subtle footer line (optional) -->
+    <hr>
+    <p style="font-size: 0.8rem; color: #5e767f; text-align: center; margin-top: 1rem;">East African Journal of Neurological Sciences — upholding integrity, transparency, and scholarly excellence.</p>
+  </div>
+</div>
+</body>
+</html>
